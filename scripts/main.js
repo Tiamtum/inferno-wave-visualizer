@@ -3,6 +3,7 @@ const previousWaveBtn = document.querySelector("#previousWaveBtn");
 const nextWaveBtn = document.querySelector("#nextWaveBtn");
 const imageContainer = document.querySelector("#imageContainer")
 const currentWave = document.querySelector("#wave");
+const waveInput = document.querySelector("#waveNumInput")
 
 //helper functions
 async function getWaves()
@@ -11,7 +12,6 @@ async function getWaves()
     const waves = await response.json();
     return waves;
 }
-
 function clearImages()
 {
     imageContainer.replaceChildren();
@@ -20,8 +20,8 @@ function updateWave(waveCount)
 {
     currentWave.replaceChildren();
     currentWave.appendChild(document.createTextNode(waveCount.toString()));
+    waveInput.value = waveCount.toString();
 }
-
 function setImages(wave)
 {
     wave.forEach(mob => {
@@ -40,7 +40,8 @@ let waveCount = 1;
 getWaves().then(waves =>{
     if(waveCount == 1)
     {
-        updateWave(waveCount)
+        clearImages();
+        updateWave(waveCount);
         setImages(waves[waveCount]);
     }
     previousWaveBtn.addEventListener("click",()=>{
@@ -61,5 +62,14 @@ getWaves().then(waves =>{
             setImages(waves[waveCount]);
         }
     })
+    waveInput.addEventListener("input",()=>{
+        if(waveInput.value && (waveInput.value >0 && waveInput.value <70))
+        {
+            console.log("waveInput",waveInput.value)
+            clearImages()
+            waveCount = waveInput.value;
+            updateWave(waveCount);
+            setImages(waves[waveCount]);
+        }
+    })
 })
-

@@ -3,8 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Inferno Wave Visualizer</title>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/skeleton.css">
+    <link rel="stylesheet" href="styles/custom.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon-32x32.png">
 </head>
 <body>
-<p>Hello World</p>
+<div class="container">
+<h1>Inferno Wave Visualizer</h1>
+<h2>Wave: 63</h2>
+<div class="row">
+    <div class="eight columns" id="imageContainer">
+        <img src="images/mobs/Nibbler.webp" alt="Nibbler">
+        <img src="images/mobs/Nibbler.webp" alt="Nibbler">
+        <img src="images/mobs/Nibbler.webp" alt="Nibbler">
+        <img src="images/mobs/Bat.webp" alt="Bat">
+        <img src="images/mobs/Bat.webp" alt="Bat">
+        <img src="images/mobs/Blob.webp" alt="Blob">
+        <img src="images/mobs/Meleer.webp" alt="Meleer">
+        <img src="images/mobs/Ranger.webp" alt="Ranger">
+        <img src="images/mobs/Mager.webp" alt="Mager">
+    </div>
+</div>
+<div id="btnContainer">
+    <button id="previousWaveBtn">Previous</button>
+    <button id="nextWaveBtn">Next</button>
+</div>
+</div>
+
+<script src="scripts/main.js"></script>
 </body>
 </html>

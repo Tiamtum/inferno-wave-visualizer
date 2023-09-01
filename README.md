@@ -1,1 +1,1 @@
-# inferno-wave-visualizer
+# Inferno Wave Visualizer

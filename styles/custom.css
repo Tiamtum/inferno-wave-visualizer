@@ -1,0 +1,23 @@
+body
+{
+    background-color: blanchedalmond;
+}
+img
+{
+    height: auto; 
+    width: auto; 
+    max-width: 185px; 
+    max-height: 185px;
+}
+#btnContainer
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+#imageContainer
+{
+    margin-left:15rem; /*this is not proper but it works for now*/
+}

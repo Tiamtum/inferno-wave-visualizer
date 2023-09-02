@@ -21,6 +21,14 @@ img
     max-height: 185px;
 }
 
+#github-link
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: end;    
+    color: red;
+}
+
 #btnContainer
 {
     display:flex;

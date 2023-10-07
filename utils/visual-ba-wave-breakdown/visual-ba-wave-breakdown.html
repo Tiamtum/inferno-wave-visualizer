@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visual BA Wave Breakdown</title>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/skeleton.css">
+    <link rel="stylesheet" href="styles/custom.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon-32x32.png">
+</head>
+<body>
+<div class="container">
+<h1>Visual BA Wave Breakdown</h1>
+<a id="github-link" target="_blank" href="https://github.com/Tiamtum/visual-inferno-wave-breakdown/tree/main">Github</a>
+<div id="btnContainer">
+    <button id="previousWaveBtn">Previous</button>
+    <button id="nextWaveBtn">Next</button>
+    <input type="number" id="waveNumInput" placeholder="enter wave" min="1" max="69">
+</div>
+<h2 id="currentWave">Wave: <span id="wave"></span></h2>
+<div class="row">
+    <div class="eight columns" id="attackerContainer">
+    </div>
+    <div class="eight columns" id="defenderContainer">
+    </div>
+    <div class="eight columns" id="healerContainer">
+    </div>
+</div>
+</div>
+
+<script src="scripts/BA-wave-breakdown.js"></script>
+</body>
+</html>

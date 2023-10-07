@@ -23,9 +23,9 @@ img
 
 #github-link
 {
-    display:flex;
-    flex-direction: row;
-    justify-content: end;    
+    display:inline;
+    float:right;
+
     color: red;
 }
 

@@ -1,237 +1,73 @@
+const attackerRoleBtn = document.querySelector("#attackerRole");
+const defenderRoleBtn = document.querySelector("#defenderRole");
+const healerRoleBtn = document.querySelector("#healerRole");
+
 const previousWaveBtn = document.querySelector("#previousWaveBtn");
 const nextWaveBtn = document.querySelector("#nextWaveBtn");
+
 const attackerContainer = document.querySelector("#attackerContainer")
 const defenderContainer = document.querySelector("#defenderContainer")
 const healerContainer = document.querySelector("#healerContainer")
+
 const currentWave = document.querySelector("#wave");
 const waveInput = document.querySelector("#waveNumInput")
-const waves = 
+
+let waveCount = 1;
+
+const attackerWaves = 
 {
-    "1":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"2","reserves":"2"},"penance_ranger":{"initial":"2","reserves":"2"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"2",reserves:"0"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"intial":"2",reserves:"0"}
-            }
-        }
-        
-    ],
-    "2":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"2","reserves":"3"},"penance_ranger":{"initial":"3","reserves":"1"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"2",reserves:"1"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"initial":"3",reserves:"0"}
-            }
-        }
-        
-    ],
-    "3":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"5","reserves":"0"},"penance_ranger":{"initial":"3","reserves":"3"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"2",reserves:"2"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"initial":"2",reserves:"1"}
-            }
-        }
-        
-    ],
-    "4":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"5","reserves":"1"},"penance_ranger":{"initial":"3","reserves":"3"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"3",reserves:"1"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"initial":"3",reserves:"1"}
-            }
-        }
-        
-    ],
-    "5":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"3","reserves":"3"},"penance_ranger":{"initial":"5","reserves":"1"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"4",reserves:"1"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"initial":"4",reserves:"1"}
-            }
-        }
-        
-    ],
-    "6":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"5","reserves":"1"},"penance_ranger":{"initial":"5","reserves":"2"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"4",reserves:"2"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"initial":"4",reserves:"2"}
-            }
-        }
-        
-    ],
-    "7":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"5","reserves":"2"},"penance_ranger":{"initial":"6","reserves":"1"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"5",reserves:"1"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"initial":"4",reserves:"3"}
-            }
-        }
-        
-    ],
-    "8":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"7","reserves":"0"},"penance_ranger":{"initial":"5","reserves":"3"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"5",reserves:"2"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"initial":"5",reserves:"2"}
-            }
-        }
-        
-    ],
-    "9":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"6","reserves":"2"},"penance_ranger":{"initial":"7","reserves":"1"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"5",reserves:"4"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"initial":"6",reserves:"2"}
-            }
-        }
-        
-    ],
-    "10":
-    [
-        {
-            "attacker":
-            { 
-                "penance_fighter":{"initial":"6","reserves":"1"},"penance_ranger":{"initial":"5","reserves":"2"}
-            }
-        },
-        {
-            "defender":
-            {
-                "penance_runner":{"initial":"5",reserves:"1"}
-            }
-        },
-        {
-            "healer": 
-            {
-                "penance_healer":{"initial":"4",reserves:"3"}
-            }
-        }
-        
-    ]
+"1": {"penance_fighter":{"initial":"2","reserves":"2"},"penance_ranger":{"initial":"2","reserves":"2"}},
+"2": {"penance_fighter":{"initial":"2","reserves":"3"},"penance_ranger":{"initial":"3","reserves":"1"}},
+"3": {"penance_fighter":{"initial":"5","reserves":"0"},"penance_ranger":{"initial":"3","reserves":"3"}},
+"4": {"penance_fighter":{"initial":"5","reserves":"1"},"penance_ranger":{"initial":"3","reserves":"3"}},
+"5": {"penance_fighter":{"initial":"3","reserves":"3"},"penance_ranger":{"initial":"5","reserves":"1"}},
+"6": {"penance_fighter":{"initial":"5","reserves":"1"},"penance_ranger":{"initial":"5","reserves":"2"}},
+"7": {"penance_fighter":{"initial":"5","reserves":"2"},"penance_ranger":{"initial":"6","reserves":"1"}},
+"8": {"penance_fighter":{"initial":"7","reserves":"0"},"penance_ranger":{"initial":"5","reserves":"3"}},
+"9": {"penance_fighter":{"initial":"6","reserves":"2"},"penance_ranger":{"initial":"7","reserves":"1"}},
+"10": {"penance_fighter":{"initial":"6","reserves":"1"},"penance_ranger":{"initial":"5","reserves":"2"}}
+}
+const defenderWaves = 
+{
+"1": {"penance_runner":{"initial":"2",reserves:"0"}},
+"2": {"penance_runner":{"initial":"2",reserves:"1"}},
+"3": {"penance_runner":{"initial":"2",reserves:"2"}},
+"4": {"penance_runner":{"initial":"3",reserves:"1"}},
+"5": {"penance_runner":{"initial":"4",reserves:"1"}},
+"6": {"penance_runner":{"initial":"4",reserves:"2"}},
+"7": {"penance_runner":{"initial":"5",reserves:"1"}},
+"8": {"penance_runner":{"initial":"5",reserves:"2"}},
+"9": {"penance_runner":{"initial":"5",reserves:"4"}},
+"10": {"penance_runner":{"initial":"5",reserves:"1"}}
+}
+const healerWaves = 
+{
+"1": {"penance_healer":{"initial":"2",reserves:"0"}},
+"2": {"penance_healer":{"initial":"3",reserves:"0"}},
+"3": {"penance_healer":{"initial":"2",reserves:"1"}},
+"4": {"penance_healer":{"initial":"3",reserves:"1"}},
+"5": {"penance_healer":{"initial":"4",reserves:"1"}},
+"6": {"penance_healer":{"initial":"4",reserves:"2"}},
+"7": {"penance_healer":{"initial":"4",reserves:"3"}},
+"8": {"penance_healer":{"initial":"5",reserves:"2"}},
+"9": {"penance_healer":{"initial":"6",reserves:"2"}},
+"10": {"penance_healer":{"initial":"4",reserves:"3"}}
 }
 
 function clearImages()
 {
-    imageContainer.replaceChildren();
+    if(attackerRoleBtn.checked)
+    {
+        attackerContainer.replaceChildren();
+    } 
+    if(defenderRoleBtn.checked)
+    {
+        defenderContainer.replaceChildren();
+    } 
+    if(healerRoleBtn.checked)
+    {
+        healerContainer.replaceChildren();
+    }        
 }
 function updateWave(waveCount)
 {
@@ -239,26 +75,56 @@ function updateWave(waveCount)
     currentWave.appendChild(document.createTextNode(waveCount.toString()));
     waveInput.value = waveCount.toString();
 }
+
+function imageCreate(name)
+{
+    let img = document.createElement("img");
+    img.src = `images/mobs/${name}.webp`;
+    img.alt = `${name}`;
+    return img;
+}
+
 function setImages(wave)
 {
-    // wave.forEach(mob => {
-    //     for(let i = 0; i<mob.num; i++)
-    //     {
-    //         let img = document.createElement("img");
-    //         img.src = `images/mobs/${mob.mob}.webp`;
-    //         img.alt = `${mob.mob}`;
-    //         imageContainer.appendChild(img);
-    //     }
-    // })
-    wave.forEach(role => {
-        console.log(role);
-    })
+    const initial = parseInt(wave.penance_healer.initial);
+    const reserves = parseInt(wave.penance_healer.reserves);
+    const total = initial+reserves;
+
+    for(let i = 0 ; i<total; i++)
+    {
+        let img = imageCreate("penance_healer");
+        healerContainer.appendChild(img);
+        console.log(`healerInitial - ${initial} - images created and appended`)
+    }
+    
+    for(let i = 0; i<reserves; i++)
+    {
+        healerContainer.children.item(healerContainer.children.length - 1 - i).classList.add("reserves");
+    }
+    
+}
+
+
+function roleHandler()
+{
+    console.log("role handler called")
+    if(attackerRoleBtn.checked)
+    {
+        setImages(attackerWaves[waveCount]);
+    } 
+    if(defenderRoleBtn.checked)
+    {
+        setImages(defenderWaves[waveCount]);
+    } 
+    if(healerRoleBtn.checked)
+    {
+        console.log("healer checked")
+        setImages(healerWaves[waveCount]);
+    }     
 }
  
-//init
-let waveCount = 1;
 updateWave(waveCount)
-setImages(waves[waveCount]);
+roleHandler();
 
 //'main'
 previousWaveBtn.addEventListener("click",()=>{
@@ -267,16 +133,17 @@ previousWaveBtn.addEventListener("click",()=>{
         clearImages()
         waveCount--;
         updateWave(waveCount);
-        setImages(waves[waveCount]);
+        roleHandler();
     }
 })
 nextWaveBtn.addEventListener("click",()=>{
+    console.log("next clicked")
     if(waveCount < 10)
     {
         clearImages()
         waveCount++;
         updateWave(waveCount);
-        setImages(waves[waveCount]);
+        roleHandler();
     }
 })
 waveInput.addEventListener("input",()=>{
@@ -286,6 +153,6 @@ waveInput.addEventListener("input",()=>{
         clearImages()
         waveCount = waveInput.value;
         updateWave(waveCount);
-        setImages(waves[waveCount]);
+        roleHandler();
     }
 })

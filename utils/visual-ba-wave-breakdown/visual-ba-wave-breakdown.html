@@ -7,33 +7,37 @@
     <link rel="stylesheet" href="../../styles/skeleton.css">
     <link rel="stylesheet" href="../../styles/custom.css">
     <link rel="stylesheet" href="custom.css">
-    <!-- <link rel="icon" type="image/x-icon" href="images/favicon-32x32.png"> -->
+    <link rel="icon" type="image/x-icon" href="images/favicon-32x32.png">
 </head>
 <body>
 <div class="container">
-<h1>Visual BA Wave Breakdown</h1>
-<a id="github-link" target="_blank" href="https://github.com/Tiamtum/visual-inferno-wave-breakdown/tree/main">Github</a>
-<div id="roleContainer">
-        <label for="attackerRole"><input type="radio" name="role" id="attackerRole">Attacker</label>
-        <label for="defenderRole"><input type="radio" name="role" id="defenderRole">Defender</label>
-        <label for="healerRole"><input type="radio" name="role" id="healerRole" checked>Healer</label>
-</div>
-<div id="btnContainer">
-    <button id="previousWaveBtn">Previous</button>
-    <button id="nextWaveBtn">Next</button>
-    <input type="number" id="waveNumInput" placeholder="enter wave" min="1" max="69">
-</div>
+    <h1>Visual BA Wave Breakdown</h1>
+    <a id="github-link" target="_blank" href="https://github.com/Tiamtum/visual-inferno-wave-breakdown/tree/main">Github</a>
+    <div id="btnContainer">
+        <button id="previousWaveBtn">Previous</button>
+        <button id="nextWaveBtn">Next</button>
+        <input type="number" id="waveNumInput" placeholder="enter wave" min="1" max="10">
+    </div>
 <h2 id="currentWave">Wave: <span id="wave"></span></h2>
 <div class="row">
+    <div class="twelve columns legend">
+        Initial Spawn:<img src="images/mobs/penance_queen.webp" alt="penance_queen"> Reserves: <img src="images/mobs/penance_queen.webp" class="reserves" alt="penance_queen">
+    </div>
+</div>
+<div class="row">
     <h3>Attacker</h3>
-    <div class="eight columns mobContainer" id="attackerContainer">
+    <div class="twelve columns mobContainer" id="attackerContainer">
     </div>
+</div>
+<div class="row">
     <h3>Defender</h3>
-    <div class="eight columns mobContainer" id="defenderContainer">
+    <div class="twelve columns mobContainer" id="defenderContainer">
     </div>
+</div>
+<div class="row">
     <h3>Healer</h3>
-    <div class="eight columns mobContainer" id="healerContainer">
-    </div>
+    <div class="twelve columns mobContainer" id="healerContainer">
+</div>
 </div>
 </div>
 

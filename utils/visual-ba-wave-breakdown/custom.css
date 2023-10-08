@@ -1,7 +1,19 @@
 .mobContainer{
-    border: 1px solid black
+    border: 1px solid black;
+    margin: 1rem;
 }
 .reserves
 {
-    filter: grayscale(100%)
+    filter: invert() opacity(80%)
+}
+.legend
+{
+    display:flex;
+    align-items: center;
+    margin: 1rem;
+}
+
+body
+{
+    background-color: rgb(192, 167, 135);
 }

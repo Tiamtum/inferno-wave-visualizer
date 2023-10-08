@@ -1,7 +1,3 @@
-const attackerRoleBtn = document.querySelector("#attackerRole");
-const defenderRoleBtn = document.querySelector("#defenderRole");
-const healerRoleBtn = document.querySelector("#healerRole");
-
 const previousWaveBtn = document.querySelector("#previousWaveBtn");
 const nextWaveBtn = document.querySelector("#nextWaveBtn");
 
@@ -56,19 +52,11 @@ const healerWaves =
 
 function clearImages()
 {
-    if(attackerRoleBtn.checked)
-    {
-        attackerContainer.replaceChildren();
-    } 
-    if(defenderRoleBtn.checked)
-    {
-        defenderContainer.replaceChildren();
-    } 
-    if(healerRoleBtn.checked)
-    {
-        healerContainer.replaceChildren();
-    }        
+    attackerContainer.replaceChildren();
+    defenderContainer.replaceChildren();
+    healerContainer.replaceChildren();
 }
+
 function updateWave(waveCount)
 {
     currentWave.replaceChildren();
@@ -76,51 +64,99 @@ function updateWave(waveCount)
     waveInput.value = waveCount.toString();
 }
 
-function imageCreate(name)
+function imageCreate(mob)
 {
     let img = document.createElement("img");
-    img.src = `images/mobs/${name}.webp`;
-    img.alt = `${name}`;
+    img.src = `images/mobs/${mob}.webp`;
+    img.alt = `${mob}`;
     return img;
 }
 
-function setImages(wave)
-{
-    const initial = parseInt(wave.penance_healer.initial);
-    const reserves = parseInt(wave.penance_healer.reserves);
+function setImages(container,mob,initial,reserves)
+{   
     const total = initial+reserves;
 
     for(let i = 0 ; i<total; i++)
     {
-        let img = imageCreate("penance_healer");
-        healerContainer.appendChild(img);
-        console.log(`healerInitial - ${initial} - images created and appended`)
+        let img = imageCreate(mob);
+        switch (container) {
+            case "defenderContainer":
+                defenderContainer.appendChild(img);
+                break;
+            case "healerContainer":
+                healerContainer.appendChild(img);
+                break;
+            default:
+                break;
+        }
     }
     
     for(let i = 0; i<reserves; i++)
     {
-        healerContainer.children.item(healerContainer.children.length - 1 - i).classList.add("reserves");
+        switch (container) {
+            case "defenderContainer":
+                defenderContainer.children.item(defenderContainer.children.length - 1 - i).classList.add("reserves");
+                break;
+            case "healerContainer":
+                healerContainer.children.item(healerContainer.children.length - 1 - i).classList.add("reserves");
+                break;
+            default:
+                break;
+        }
     }
     
 }
 
+function setAttackerImages(mobs,initialFighters,reserveFighters,initialRangers,reserveRangers)
+{
+    const totalFighters = initialFighters+reserveFighters;
+    const totalRangers = initialRangers + reserveRangers;
+
+    //there has to be a better way to do this but this works at the moment
+    for(let i = 0 ; i<totalFighters; i++)
+    {
+        let img = imageCreate(mobs[0]);
+        attackerContainer.appendChild(img);
+    } 
+    for(let i = 0 ; i<reserveFighters; i++)
+    {
+        attackerContainer.children.item(attackerContainer.children.length - 1 - i).classList.add("reserves");        
+    }   
+    for(let i = 0 ; i<totalRangers; i++)
+    {
+        let img = imageCreate(mobs[1]);
+        attackerContainer.appendChild(img);
+    } 
+    for(let i = 0 ; i<reserveRangers; i++)
+    {
+        attackerContainer.children.item(attackerContainer.children.length - 1 - i).classList.add("reserves");        
+    }   
+
+}
 
 function roleHandler()
 {
     console.log("role handler called")
-    if(attackerRoleBtn.checked)
-    {
-        setImages(attackerWaves[waveCount]);
-    } 
-    if(defenderRoleBtn.checked)
-    {
-        setImages(defenderWaves[waveCount]);
-    } 
-    if(healerRoleBtn.checked)
-    {
-        console.log("healer checked")
-        setImages(healerWaves[waveCount]);
-    }     
+    setAttackerImages(
+        ["penance_fighter","penance_ranger"],
+        parseInt(attackerWaves[waveCount].penance_fighter.initial),
+        parseInt(attackerWaves[waveCount].penance_fighter.reserves),
+        parseInt(attackerWaves[waveCount].penance_ranger.initial),
+        parseInt(attackerWaves[waveCount].penance_ranger.reserves),        
+        );
+    setImages(
+        "defenderContainer",
+        "penance_runner",
+        parseInt(defenderWaves[waveCount].penance_runner.initial),
+        parseInt(defenderWaves[waveCount].penance_runner.reserves)
+        );
+    setImages(
+        "healerContainer",
+        "penance_healer",
+        parseInt(healerWaves[waveCount].penance_healer.initial),
+        parseInt(healerWaves[waveCount].penance_healer.reserves)
+        );
+         
 }
  
 updateWave(waveCount)
@@ -150,7 +186,7 @@ waveInput.addEventListener("input",()=>{
     if(waveInput.value && (waveInput.value >0 && waveInput.value <11))
     {
         console.log("waveInput",waveInput.value)
-        clearImages()
+        clearImages();
         waveCount = waveInput.value;
         updateWave(waveCount);
         roleHandler();
